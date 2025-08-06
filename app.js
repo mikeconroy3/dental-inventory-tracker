@@ -1,6 +1,3 @@
-// Initialize Firestore
-const db = firebase.firestore();
-
 // Load inventory and display it
 async function loadInventory() {
   const container = document.getElementById('inventory');
@@ -106,3 +103,4 @@ function generateQrCode(qrId) {
 
   qrContainer.appendChild(downloadLink);
 }
+
