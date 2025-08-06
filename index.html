@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dental Inventory Tracker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
   <!-- QR Code Scanner -->
   <script src="https://unpkg.com/html5-qrcode"></script>
@@ -16,36 +16,37 @@
 
   <!-- Firebase Core SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
-
-  <!-- Your Config & App Logic -->
-  <script src="firebase-config.js"></script>
-  <script src="app.js"></script>
 </head>
+
 <body>
   <h1>Dental Inventory Dashboard</h1>
 
-  <!-- QR SCAN BUTTON -->
+  <!-- QR Scan Button -->
   <button onclick="startQrScan()">📷 Scan QR Code</button>
   <div style="width:300px;" id="reader"></div>
 
-  <!-- INVENTORY LIST -->
+  <!-- Inventory Display Section -->
   <h2>Current Inventory</h2>
   <div id="inventory"></div>
 
   <hr>
 
-  <!-- ADD ITEM FORM -->
+  <!-- Add New Item Form -->
   <h2>Add New Inventory Item</h2>
   <form id="addItemForm" onsubmit="return addItem();">
-    <input type="text" id="itemName" placeholder="Item Name" required><br><br>
-    <input type="text" id="qrId" placeholder="QR Code ID (e.g. gloves123)" required><br><br>
-    <input type="number" id="quantity" placeholder="Starting Quantity" required><br><br>
-    <input type="number" id="minThreshold" placeholder="Minimum Threshold" required><br><br>
-    <input type="url" id="orderUrl" placeholder="Order URL"><br><br>
+    <input type="text" id="itemName" placeholder="Item Name" required /><br /><br />
+    <input type="text" id="qrId" placeholder="QR Code ID (e.g. gloves123)" required /><br /><br />
+    <input type="number" id="quantity" placeholder="Starting Quantity" required /><br /><br />
+    <input type="number" id="minThreshold" placeholder="Minimum Threshold" required /><br /><br />
+    <input type="url" id="orderUrl" placeholder="Order URL" /><br /><br />
     <button type="submit">➕ Add Item & Generate QR</button>
   </form>
 
-  <!-- QR PREVIEW -->
+  <!-- QR Code Preview -->
   <div id="qrPreview"></div>
+
+  <!-- Firebase Config + App Logic (deferred until after body loads) -->
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
