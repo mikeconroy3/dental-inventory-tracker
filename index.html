@@ -4,12 +4,22 @@
   <meta charset="UTF-8">
   <title>Dental Inventory Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 
   <!-- QR Code Scanner -->
   <script src="https://unpkg.com/html5-qrcode"></script>
+
   <!-- QR Code Generator -->
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+
+  <!-- Firebase Core SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+
+  <!-- Your Config & App Logic -->
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
 </head>
 <body>
   <h1>Dental Inventory Dashboard</h1>
@@ -37,9 +47,5 @@
 
   <!-- QR PREVIEW -->
   <div id="qrPreview"></div>
-
-  <!-- Firebase + App -->
-  <script src="firebase-config.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>
