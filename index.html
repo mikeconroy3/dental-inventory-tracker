@@ -16,3 +16,16 @@
   <script src="app.js"></script>
 </body>
 </html>
+
+<hr>
+<h2>Add New Inventory Item</h2>
+<form id="addItemForm" onsubmit="return addItem();">
+  <input type="text" id="itemName" placeholder="Item Name" required><br>
+  <input type="text" id="qrId" placeholder="QR Code ID (e.g. gloves123)" required><br>
+  <input type="number" id="quantity" placeholder="Starting Quantity" required><br>
+  <input type="number" id="minThreshold" placeholder="Minimum Threshold" required><br>
+  <input type="url" id="orderUrl" placeholder="Order URL"><br>
+  <button type="submit">Add Item</button>
+</form>
+
+<div id="qrPreview"></div>
