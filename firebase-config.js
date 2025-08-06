@@ -1,10 +1,12 @@
 // Replace these values with your Firebase project settings
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "yourapp.firebaseapp.com",
-  projectId: "yourapp-id",
-  storageBucket: "yourapp.appspot.com",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_ID"
+  apiKey: "AIzaSyBrJ8AHMt-0cV9wZJlWaSfNq6aRT6KgrXc",
+  authDomain: "dental-inventory-tracker-66662.firebaseapp.com",
+  projectId: "dental-inventory-tracker-66662",
+  storageBucket: "dental-inventory-tracker-66662.firebasestorage.app",
+  messagingSenderId: "576711329707",
+  appId: "1:576711329707:web:880377ddafbcea944a34ee",
+  measurementId: "G-E75LS94P26"
 };
 firebase.initializeApp(firebaseConfig);
+
