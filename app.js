@@ -1,5 +1,7 @@
+// Initialize Firestore
 const db = firebase.firestore();
 
+// Load inventory and display it
 async function loadInventory() {
   const container = document.getElementById('inventory');
   container.innerHTML = '';
@@ -19,14 +21,12 @@ async function loadInventory() {
 
 loadInventory();
 
+// Scan QR code to reduce quantity
 function startQrScan() {
   const html5QrCode = new Html5Qrcode("reader");
   html5QrCode.start(
     { facingMode: "environment" },
-    {
-      fps: 10,
-      qrbox: 250
-    },
+    { fps: 10, qrbox: 250 },
     async (decodedText) => {
       console.log("QR Code detected:", decodedText);
       html5QrCode.stop();
@@ -39,21 +39,24 @@ function startQrScan() {
 
       const doc = snapshot.docs[0];
       const data = doc.data();
+
       await db.collection("items").doc(doc.id).update({
         quantity: firebase.firestore.FieldValue.increment(-1)
       });
 
-      alert(`Scanned: ${data.name}. Quantity reduced.`);
+      alert(`✅ Scanned: ${data.name}. Quantity reduced.`);
       loadInventory();
     },
     (errorMessage) => {
-      // Ignore scan errors silently
+      // Optional: console.log("Scan error:", errorMessage);
     }
   ).catch(err => {
     console.error("QR scan error:", err);
+    alert("Error starting QR scan.");
   });
 }
 
+// Add new item to Firestore
 function addItem() {
   const name = document.getElementById('itemName').value;
   const qrId = document.getElementById('qrId').value;
@@ -71,21 +74,24 @@ function addItem() {
     alert("✅ Item added successfully!");
     generateQrCode(qrId);
     loadInventory();
+    document.getElementById("addItemForm").reset();
   }).catch(err => {
     console.error("❌ Error adding item:", err);
     alert("Error adding item.");
   });
 
-  return false; // prevent form reload
+  return false; // Prevent form reload
 }
 
+// Generate and show QR code
 function generateQrCode(qrId) {
   const qrContainer = document.getElementById('qrPreview');
-  qrContainer.innerHTML = `<h3>QR Code for ${qrId}</h3>`;
+  qrContainer.innerHTML = `<h3>QR Code for: ${qrId}</h3>`;
+
   const canvas = document.createElement('canvas');
   qrContainer.appendChild(canvas);
 
-  new QRious({
+  const qr = new QRious({
     element: canvas,
     value: qrId,
     size: 200
@@ -95,5 +101,8 @@ function generateQrCode(qrId) {
   downloadLink.textContent = "⬇️ Download QR Code";
   downloadLink.href = canvas.toDataURL("image/png");
   downloadLink.download = `${qrId}.png`;
+  downloadLink.style.display = 'block';
+  downloadLink.style.marginTop = '10px';
+
   qrContainer.appendChild(downloadLink);
 }
