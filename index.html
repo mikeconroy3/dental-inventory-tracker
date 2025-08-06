@@ -3,29 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Dental Inventory Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+
+  <!-- QR Code Scanner -->
   <script src="https://unpkg.com/html5-qrcode"></script>
+  <!-- QR Code Generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
 </head>
 <body>
   <h1>Dental Inventory Dashboard</h1>
+
+  <!-- QR SCAN BUTTON -->
   <button onclick="startQrScan()">📷 Scan QR Code</button>
   <div style="width:300px;" id="reader"></div>
+
+  <!-- INVENTORY LIST -->
+  <h2>Current Inventory</h2>
   <div id="inventory"></div>
 
+  <hr>
+
+  <!-- ADD ITEM FORM -->
+  <h2>Add New Inventory Item</h2>
+  <form id="addItemForm" onsubmit="return addItem();">
+    <input type="text" id="itemName" placeholder="Item Name" required><br><br>
+    <input type="text" id="qrId" placeholder="QR Code ID (e.g. gloves123)" required><br><br>
+    <input type="number" id="quantity" placeholder="Starting Quantity" required><br><br>
+    <input type="number" id="minThreshold" placeholder="Minimum Threshold" required><br><br>
+    <input type="url" id="orderUrl" placeholder="Order URL"><br><br>
+    <button type="submit">➕ Add Item & Generate QR</button>
+  </form>
+
+  <!-- QR PREVIEW -->
+  <div id="qrPreview"></div>
+
+  <!-- Firebase + App -->
   <script src="firebase-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
-
-<hr>
-<h2>Add New Inventory Item</h2>
-<form id="addItemForm" onsubmit="return addItem();">
-  <input type="text" id="itemName" placeholder="Item Name" required><br>
-  <input type="text" id="qrId" placeholder="QR Code ID (e.g. gloves123)" required><br>
-  <input type="number" id="quantity" placeholder="Starting Quantity" required><br>
-  <input type="number" id="minThreshold" placeholder="Minimum Threshold" required><br>
-  <input type="url" id="orderUrl" placeholder="Order URL"><br>
-  <button type="submit">Add Item</button>
-</form>
-
-<div id="qrPreview"></div>
